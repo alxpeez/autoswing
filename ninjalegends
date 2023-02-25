@@ -1,0 +1,25 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Ninja Legends", "DarkTheme")
+
+--Silme
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Main")
+
+MainSection:NewToggle("Auto Swing", "Make Your Player Auto-Swing", function(v)
+    getgenv().autoswing = v
+	while true do
+		if not getgenv().autoswing then return end
+		for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+			if v:FindfirstChild("ninjitsuGain") then
+				game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+				break
+			end
+		end
+		local A_1 = "swingKatana"
+		local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+		Event:FireServer(A_1)
+		wait(0.1)
+	end
+ end)
+
+--Credits To Alxpeez
